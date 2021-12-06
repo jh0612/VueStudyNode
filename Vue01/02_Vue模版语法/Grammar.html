@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue模版语法</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../lib/vue.js"></script>
+</head>
+<header>
+    <h2>Vue模版语法有两大类：</h2><br>
+    <h3>1.差值语法</h3><br>
+    <label>功能：用于解析标签体内容</label><br>
+    <label>写法：{{xxx}}，xxx就是js表达式，并且可以直接读取到data中的所有属性</label><br>
+    <h3>2.指令语法</h3><br>
+    <label>功能：用于解析标签（包括：标签属性；标签体内容；绑定时间....）</label><br>
+    <label>举例：v-bind:href="xxx" 或 简写为 :href="xxx"。 xxx同样要写js表达式并且可以直接读取到data中的所有属性</label><br>
+    <p style="color: red; font-size:larger;">备注：Vue中有很多的指令，并且形式都是：v-????，这里我们只是用v-bind来举例</p><br>
+</header>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="demo">
+        <h1>差值语法</h1>
+        <h3>你好，{{name}}</h3>
+        <hr>
+        <h1>指令语法</h1>
+        <a v-bind:href="blog.url" x="hello">进入{{blog.name}}的blog——1</a><br>
+        <a :href="blog.url" x="hello">进入{{blog.name}}的blog——2</a>
+    </div>
+    
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false    //阻止 Vue 在启动时生成生产提示
+
+    new Vue({
+        el:'#demo',
+        data:{
+            name:'Vue',
+            blog:{
+                name:'令和星人',
+                url:'https://reiwaxr.club'
+            }
+        }
+    })
+</script>
+</html>
