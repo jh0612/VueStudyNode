@@ -6,17 +6,50 @@
     <script type="text/javascript" src="../lib/vue.js"></script>
 </head>
 <header>
-    <h2></h2><br>
-    <label></label>
+    <h2>data与el的两种写法</h2><br>
+    <p>1.el有两种写法</p><br>
+    <label>（1）new Vue 的时候配置el属性。例如：【el:'#demo'】</label><br>
+    <label>（2）先创建Vue实例对象，随后通过v.$mount('#demo')指定el的值</label><br>
+    <p>2.data有两种写法</p><br>
+    <label>（1）对象式</label><br>
+    <label>（2）函数式-------->用的多</label><br>
+    <h2 style="color: red;">注意点：Vue管理的函数，一定不要写箭头函数，一旦写了箭头函数，this就不再是Vue实例对象了！！</h2>
+    <hr>
+    
 </header>
 <body>
-    <div id="demo"></div>
+    <div id="demo">
+        <h1>こんにちは！{{name}}</h1>
+    </div>   
+
 </body>
 <script type="text/javascript">
     Vue.config.productionTip = false    //阻止 vue 在启动时生成生产提示
-    new Vue({
-        
+    // 1.el的两种写法和 data的两种写法
+    const v = new Vue({     //el-①:这个的弊端就是指定容器的时候就得想好
+        //现在不予使用el绑定id为demo的部分，使用下方的 v.$mount('#root')
+        // el:'#demo',
+        /*
+        data-①:对象式
+         data:{
+             name:'Reiwaxr'
+         }
+        */
+       //data-②:函数式
+        data:function(){
+            console.log('@@@@',this)   //此处的this是Vue实例对象
+            return{
+                name:'Reiwaxr'
+            } 
+        }
+
     })
-    
+    console.log(v)
+    // v.$mount('#root')
+    // 下方为证明 v.$mount('#root')方法也可以绑定
+    setTimeout(() =>{
+        v.$mount('#demo')       //el-②:这个方法指定容器的话随时都可以进行
+    },2000)
+
 </script>
 </html>
