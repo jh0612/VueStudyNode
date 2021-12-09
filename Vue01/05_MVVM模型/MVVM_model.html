@@ -6,22 +6,35 @@
     <script type="text/javascript" src="../lib/vue.js"></script>
 </head>
 <header>
-    <h2></h2><br>
-    <p></p><br>
-    <label></label><br>
-    <label></label><br>
+    <h2>MVVM模型</h2><br>
+    <label>1. M：模型（Model）---- data中的数据</label><br>
+    <label>2. V：视图（View）---- 模版代码</label><br>
+    <label>2. VM：视图模型（ViewModel）---- Vue实例</label><br>
+    <h2>观察发现：</h2><br>
+    <label>1.data中的所有属性，最后都出现在了vm身上</label><br>
+    <label>2.vm身上所有的属性以及Vue原型上所有的属性，在Vue模版中都可以直接使用</label><br>
     <hr>    
 </header>
 <body>
     <div id="demo">
-        <h1>こんにちは！{{name}}</h1>
-    </div>   
+        <h1>学校名称：{{name}}</h1>
+        <h1>学校地址：{{address}}</h1>
+        <h1>测试1：{{923+99}}</h1>
+        <h1>测试2：{{$options}}</h1>
+        <h1>测试3：{{$emit}}</h1>
+        <h1>测试4：{{_c}}</h1>
+    </div>
 
 </body>
 <script type="text/javascript">
     Vue.config.productionTip = false    //阻止 vue 在启动时生成生产提示
-    new Vue({
-        el:'#demo'
+    const vm = new Vue({
+        el:'#demo',
+        data:{
+            name:'日本工学院',
+            address:'Japen'
+        }
     })
+    console.log(vm)
 </script>
 </html>
